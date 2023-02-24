@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: inject env
-        run: npm run inject:env DATABASE_URL=${{ secrets.DATABASE_URL }} REDIS_URL=${{ secrets.REDIS_URL }} QQ_EMAIL_USER=${{QQ_EMAIL_USER}} QQ_EMAIL_PASS=${{QQ_EMAIL_PASS}} BASE_URL=${{BASE_URL}}
+        run: npm run inject:env DATABASE_URL=${{ secrets.DATABASE_URL }} REDIS_URL=${{ secrets.REDIS_URL }} QQ_EMAIL_USER=${{secrets.QQ_EMAIL_USER}} QQ_EMAIL_PASS=${{secrets.QQ_EMAIL_PASS}} BASE_URL=${{secrets.BASE_URL}}
 
       - name: Deploy to Server # 第二步，rsync推文件
         uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
