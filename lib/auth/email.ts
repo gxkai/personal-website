@@ -17,10 +17,10 @@ let transporter = nodemailer.createTransport({
   }
 })
 
-const mailjet = new nodeMailjet.Client({
-  apiKey: process.env.MAILJET_API_KEY,
-  apiSecret: process.env.MAILJET_SECRET_KEY
-})
+// const mailjet = new nodeMailjet.Client({
+//   apiKey: process.env.MAILJET_API_KEY,
+//   apiSecret: process.env.MAILJET_SECRET_KEY
+// })
 export interface Metadata {
   email?: string;
   provider: "email";
