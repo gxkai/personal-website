@@ -38,3 +38,4 @@ yarn-error.log*
 /.idea/personal-website.iml
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
+/.id_rsa
