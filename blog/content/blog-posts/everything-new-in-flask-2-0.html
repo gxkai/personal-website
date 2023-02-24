@@ -1,0 +1,74 @@
+<blockquote>
+<p>Photo by <a href="https://unsplash.com/@markusspiske">Markus Spiske</a> on <a href="https://unsplash.com/s/photos/code">Unsplash</a></p>
+</blockquote>
+<p>Flask is one of the most used Python Frameworks in Web Development. It recently came out with a new release - <code>2.0.0</code>.</p>
+<p>In this post, we'll go through the major changes. If you want the full change log, click <a href="https://flask.palletsprojects.com/en/2.0.x/changes/#version-2-0-0">here</a>.</p>
+<h2 id="changes" tabindex="-1">Changes</h2>
+<p>Let's go over the major changes introduced in Flask <code>2.0.0</code></p>
+<h3 id="dropped-support-for-python-2-and-3.5" tabindex="-1">Dropped support for Python 2 and 3.5</h3>
+<p>The most breaking change is the dropped support for Python <code>2</code> and <code>3.5</code>. Well, it's about time we move from those versions anyway, since Python <code>2</code> is <em>really old</em>!</p>
+<p>Also, dropping <code>3.5</code> and <code>2</code> support is required for the next change:</p>
+<h3 id="type-hints" tabindex="-1">Type hints</h3>
+<p>Python <code>3.7</code> added support for type annotations. This is where you can add type hints to variables to tell others what type it will be. This is a God send for people with linters and autocompletors, since you no longer have to view docs to find the return type of a certain function.</p>
+<p>Keep in mind however, that type hints aren't enforced, meaning that this is completely valid code, as far as the <code>python</code> interpreter goes</p>
+<pre class="hljs lang-python"><code>a: <span class="hljs-built_in">str</span> = <span class="hljs-number">5</span>
+</code></pre>
+<blockquote>
+<p>To check your types, use an external linter like <a href="http://mypy-lang.org/">mypy</a></p>
+</blockquote>
+<p>Flask <code>2.0.0</code> is now fully typed, so no more awkward moments when you import <code>request</code> from <code>flask</code> and your IDE won't autocomplete its methods.</p>
+<p>You can see the difference between the type hints in Flask <code>2.0.0</code> and its earlier versions with the <code>help()</code> function:</p>
+<p><img src="https://i.imgur.com/soc5ohb.png" alt="Flask 1.1.4's type hints"></p>
+<p>The above image shows Flask <code>1.1.4</code>'s docstring and the below image shows Flask <code>2.0.1</code>'s docstring. Notice the type hints</p>
+<p><img src="https://i.imgur.com/pK5B9yK.png" alt="Flask 2.0.1's type hints"></p>
+<h3 id="new-config.from_file()-method" tabindex="-1">New <code>Config.from_file()</code> method</h3>
+<p>You may remember the <code>Config.from_json()</code>, or the <code>app.config.from_json()</code> method that you use to configure Flask with a JSON File. In Flask <code>2.0.0</code>, it has been deprecated in favour of <code>Config.from_file</code>.</p>
+<p>The syntax of this method is as follows:</p>
+<pre class="hljs lang-python"><code>app.config.from_file(filename: <span class="hljs-built_in">str</span>, loads_function)
+</code></pre>
+<p>Now, if we wanted to implement the old <code>from_json</code> behaviour, look at the code below:</p>
+<pre class="hljs lang-python"><code><span class="hljs-keyword">import</span> json
+
+app.config.from_file(filename: <span class="hljs-built_in">str</span>, json.load)
+</code></pre>
+<p>This opens us to do the same to parse <code>TOML</code> files as well:</p>
+<pre class="hljs lang-python"><code><span class="hljs-keyword">import</span> toml
+
+app.config.from_file(filename: <span class="hljs-built_in">str</span>, toml.load)
+</code></pre>
+<blockquote>
+<p>You need to install the <code>toml</code> package for this!</p>
+</blockquote>
+<h3 id="new-route-decorators" tabindex="-1">New route decorators</h3>
+<p>Flask has new decorators for defining routes now. Before we used <code>@app.route(path: str)</code> to define a route in our app, and for methods other than <code>GET</code> we add the <code>methods</code> parameter to our decorator.</p>
+<p>Now, Flask has followed ExpressJS's routes and added decorators for defining routes specific to HTTP Methods.</p>
+<pre class="hljs lang-python"><code><span class="hljs-comment"># You can now use these instead of app.route</span>
+<span class="hljs-meta">@app.get(<span class="hljs-params">path</span>)</span>
+<span class="hljs-meta">@app.post(<span class="hljs-params">path</span>)</span>
+<span class="hljs-meta">@app.put(<span class="hljs-params">path</span>)</span>
+<span class="hljs-meta">@app.delete(<span class="hljs-params">path</span>)</span>
+<span class="hljs-meta">@app.patch(<span class="hljs-params">path</span>)</span>
+</code></pre>
+<h3 id="smaller-changes" tabindex="-1">Smaller changes</h3>
+<p>Here's a list of smaller changes that may affect your projects:</p>
+<ul>
+<li>Some <code>send_file</code> parameters have been renamed, the old names are deprecated. <code>attachment_filename</code> is renamed to <code>download_name</code>. <code>cache_timeout</code> is renamed to <code>max_age</code>. <code>add_etags</code> is renamed to <code>etag</code>.</li>
+<li>When loading a <code>.env</code> or <code>.flaskenv</code> file, the current working directory is no longer changed to the location of the file.</li>
+<li><code>helpers.total_seconds()</code> is deprecated. Use <code>timedelta.total_seconds()</code> instead.</li>
+</ul>
+<p>And my favorite feature of this list:</p>
+<ul>
+<li><code>flask shell</code> sets up tab and history completion like the default python shell if <code>readline</code> is installed</li>
+</ul>
+<h2 id="how-to-upgrade" tabindex="-1">How to upgrade</h2>
+<p>Change your <code>Flask</code> dependency in <code>requirements.txt</code>, <code>Pipfile</code> or <code>pyproject.toml</code> to this:</p>
+<pre><code class="language-plain">Flask==2.0.0
+</code></pre>
+<p>And run:</p>
+<pre class="hljs lang-sh"><code>pip3 install -r requirements.txt
+</code></pre>
+<blockquote>
+<p>You can no longer use <code>python2</code>, so beware of that!</p>
+</blockquote>
+<h2 id="conclusion" tabindex="-1">Conclusion</h2>
+<p>This is of course not the full change log. If you want the full change log, click <a href="https://flask.palletsprojects.com/en/2.0.x/changes/#version-2-0-0">here</a>.</p>

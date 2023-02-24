@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  transition-property: color, background, border-color;
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+}
+
+code {
+  @apply font-mono p-1 bg-gray-300 dark:bg-gray-700;
+  font-size: 90%;
+}

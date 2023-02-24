@@ -1,0 +1,55 @@
+.content {
+  margin-top: 3rem;
+}
+
+.content h1 {
+  @apply text-4xl font-bold my-4;
+}
+
+.content h2 {
+  @apply text-3xl font-bold my-3;
+}
+
+.content h3 {
+  @apply text-2xl font-bold my-2;
+}
+
+.content h4 {
+  @apply text-xl font-bold my-2;
+}
+
+.content h5 {
+  @apply text-lg font-bold my-2;
+}
+
+.content h6 {
+  @apply font-bold my-2;
+}
+
+.content p {
+  @apply text-lg my-2;
+}
+
+.content ul {
+  @apply m-2;
+  list-style-type: disc;
+}
+
+.content ol {
+  @apply m-2;
+  list-style-type: decimal;
+}
+
+.content blockquote {
+  @apply mx-2 px-4 border-l-4 border-gray-700 py-1;
+}
+
+.content pre code {
+  background-color: inherit;
+  filter: none;
+  padding: initial;
+}
+
+.content a {
+  @apply text-blue-500 hover:text-blue-600 no-underline hover:underline;
+}

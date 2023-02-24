@@ -1,0 +1,5 @@
+Email code
+
+Enter this code to sign in: {{ var:code }}
+
+Or paste this link in your browser: {{ var:link }}

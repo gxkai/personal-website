@@ -1,0 +1,48 @@
+<p>You no longer need theme switcher buttons, or some crazy javascript to determine what theme a user wants, because a user's computer, or browser rather, knows what theme they want!</p>
+<p>Modern browsers like Firefox and Chrome support dark mode. Along with supporting dark mode, they also tell the website what theme is currently being used. Sites like <a href="https://duckduckgo.com">duckduckgo</a> use this information to automatically switch this theme based on your browser's theme, and you can get this information using CSS! Let's see how</p>
+<h2 id="a-simple-website." tabindex="-1">A simple website.</h2>
+<p>I'm going to make a simple website that uses 2 colors, one for the background, and the other for text.</p>
+<pre class="hljs lang-html"><code><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;ie=edge&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Automatic css theme switcher<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;style.css&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My amazing website!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>It looks so good right?<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h2 id="the-css" tabindex="-1">The CSS</h2>
+<p>We're going to use CSS Variables (yeah I bet you didn't know CSS had support for variables) for this. In the <code>:root</code> selector, we define our variables, and we can use it everywhere else. Hence, when we change these variables, the color of the website changes. We change these variables using a certain <code>@media</code> selector called <code>prefers-color-theme</code>. Let me show you the code:</p>
+<pre class="hljs lang-css"><code><span class="hljs-comment">/* style.css */</span>
+
+<span class="hljs-keyword">@import</span> url(<span class="hljs-string">&quot;https://fonts.googleapis.com/css2?family=Source+Sans+Pro&amp;display=swap&quot;</span>);
+
+<span class="hljs-selector-pseudo">:root</span> {
+  <span class="hljs-attr">--text</span>: <span class="hljs-number">#000</span>;
+  <span class="hljs-attr">--bg</span>: <span class="hljs-number">#fff</span>;
+}
+
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Source Sans Pro&quot;</span>, sans-serif;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--bg);
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--text);
+}
+
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme</span>: dark) {
+  <span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-attr">--text</span>: <span class="hljs-number">#fff</span>;
+    <span class="hljs-attr">--bg</span>: <span class="hljs-number">#000</span>;
+  }
+}
+</code></pre>
+<p>Hence, using the <code>@media</code> selector, we're changing the theme based on the users settings. Let me show you a demo:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/2tkozbxo78zfp13fsfk3.gif" alt="Alt Text"></p>
+<h2 id="code-and-playground" tabindex="-1">Code and Playground</h2>
+<p>I wrote this code on <a href="https://codesandbox.io">CodeSandbox</a>, so you can easily use the code in your projects.</p>

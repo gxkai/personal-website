@@ -1,0 +1,347 @@
+<h1 id="an-introduction-to-oop-in-java" tabindex="-1">An introduction to OOP in Java</h1>
+<p>In my <a href="https://arnu515.gq/blog/java-in-thirty-minutes">last article</a>, we learned about the basics of java in just thirty minutes. In this article, you will learn the basics of OOP in Java.</p>
+<p>In Java, all functional code is part of a class. This is what makes it an Object Oriented Programming (OOP) language. In this article, you'll learn:</p>
+<ul>
+<li>
+<p>how to create classes</p>
+</li>
+<li>
+<p>how to create an object of a class</p>
+</li>
+<li>
+<p>how to define instance variables (attributes)</p>
+</li>
+<li>
+<p>how to create class functions (methods)</p>
+</li>
+<li>
+<p>about the different access specifiers in java</p>
+</li>
+<li>
+<p>class constructors</p>
+</li>
+<li>
+<p>overloading methods and constructors</p>
+</li>
+</ul>
+<h2 id="creating-classes-in-java" tabindex="-1">Creating classes in java</h2>
+<p>As we know already, all functional java code is written in a class. A class is a group of related variables and methods that can interact with each other. Classes can be accessed by using it as a construct to create <em>objects</em>.</p>
+<p>To create a class, you will use the following syntax.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">NameOfTheClass</span> {
+    <span class="hljs-comment">// code    </span>
+}
+</code></pre>
+<blockquote>
+<p>It is convention in java to have the first letter of a class name capitalised as well, but the names of other entities will still follow <code>camelCase</code>.</p>
+</blockquote>
+<p>You can also specify access specifiers like <code>public</code> or <code>private</code>. We'll get back to those later. For now, remember that if a class has a <code>public</code> access specifier, the name of the file <strong>MUST</strong> equal to the name of the class. If you had a public class named <code>MyClass</code>, the name of the java file that contains the class must be <code>MyClass.java</code>, as a result, <strong>there can only be one <code>public</code> class per file</strong>.</p>
+<h3 id="creating-an-object-of-a-class" tabindex="-1">Creating an object of a class</h3>
+<p>An object is an instance of a class. Each object has a specific state, that is unique to itself, and a shared state across all objects of the same class. By creating an object, we can access the attributes (variables) and methods (functions) defined in the class. Any attributes or methods defined with the <code>static</code> keyword <strong>DO NOT</strong> need an object to be accessed/called.</p>
+<p>An object is just a variable with the type of the class, and the value being <code>new ClassName()</code>, so if you wanted to create an object named <code>myObject</code> of the class <code>MyClass</code>, this is how you would do it:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">MyClass</span> <span class="hljs-variable">myObject</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+</code></pre>
+<h2 id="defining-variables-in-a-class" tabindex="-1">Defining variables in a class</h2>
+<p>A class can have variables that can have different values in different objects, or a shared value for all instances of the class (<code>static</code> variables). Declaring a variable is just the same as you would do it in a regular function, but instead of the variable being declared in the function body, it should be declared in the class body. Only <code>static</code> variables should be initialised, and non-static/instance variables/attributes should be initialised in the constructor. We will learn more about the constructor later on.</p>
+<p>For now, let's create a class called MyClass with three instance variables – <code>String name</code>, <code>int age</code> and <code>char gender</code>.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    String name;
+    <span class="hljs-type">int</span> age;
+    <span class="hljs-type">char</span> gender;
+}
+</code></pre>
+<p>Now, we can create an object of the class and access the variables in the class using the dot (<code>.</code>) syntax given below:</p>
+<pre class="hljs lang-java"><code>objectName.attributeName;
+</code></pre>
+<p>Let's create an object of the <code>MyClass</code> class and give values to the three variables we defined above.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Program</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">MyClass</span> <span class="hljs-variable">myClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+        myClass.name = <span class="hljs-string">&quot;John Doe&quot;</span>;
+        myClass.age = <span class="hljs-number">21</span>;
+        myClass.gender = <span class="hljs-string">&#x27;M&#x27;</span>;
+
+        System.out.println(myClass.name + <span class="hljs-string">&quot; (&quot;</span> + myClass.gender + <span class="hljs-string">&quot;) is &quot;</span> + myClass.age + <span class="hljs-string">&quot;years old&quot;</span>);
+    }
+}
+</code></pre>
+<p>When you run the program, you should get the following output:</p>
+<pre><code class="language-plain">John Doe (M) is 21 years old
+</code></pre>
+<h3 id="what-are-static-variables" tabindex="-1">What are <code>static</code> variables</h3>
+<p>You've heard me mention <code>static</code> variables a bunch. These variables are special variables of a class that can be accessed without having to create an object of the class. To define a static variable, simply prefix the variable definition with the <code>static</code> keyword.</p>
+<p>Let's define a <code>static</code> variable called <code>String species</code> in the <code>MyClass</code> class from earlier, and set its value to <code>Human</code>.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">species</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Human&quot;</span>;  <span class="hljs-comment">// A static variable. This has to be initialised here itself</span>
+    String name;  <span class="hljs-comment">// A non-static variable</span>
+}
+</code></pre>
+<blockquote>
+<p>I've omitted the <code>age</code> and <code>gender</code> variables.</p>
+</blockquote>
+<p>You can access <code>static</code> variables directly from the class, without creating an object. This can be done by just replacing the object's name in the syntax with the class's name. The static variable's value will always be the same across all objects. Let's take a look:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Program</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">MyClass</span> <span class="hljs-variable">obj1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+        <span class="hljs-type">MyClass</span> <span class="hljs-variable">obj2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+        obj1.name = <span class="hljs-string">&quot;Steve&quot;</span>;
+        obj2.name = <span class="hljs-string">&quot;Alex&quot;</span>;
+        System.out.println(<span class="hljs-string">&quot;Obj1: &quot;</span> + obj1.name);
+        System.out.println(<span class="hljs-string">&quot;Obj2: &quot;</span> + obj2.name);
+        System.out.println(<span class="hljs-string">&quot;Static variable: &quot;</span> + MyClass.species);
+    }
+}
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-plain">Obj1: Steve
+Obj2: Alex
+Static variable: Human
+</code></pre>
+<p>You can see that the instance variables are accessed using the object's name in the dot syntax, while the static variables are accessed using the class's syntax.</p>
+<h2 id="class-methods" tabindex="-1">Class Methods</h2>
+<p>You can create methods inside classes to work with class variables, and/or to reduce repetition of code, since methods are re-usable blocks of code. Methods, more specifically, instance methods, have access to the current object's instance variables, the class's static variables, and any other data you pass to it. Methods can also return a value, meaning they can give you back a value that you can use for anything else.</p>
+<p>To define a method, use the following syntax. Fields suffixed with a <code>?</code> are optional.</p>
+<pre class="hljs lang-java"><code>accessSpecifier? <span class="hljs-keyword">static</span>? returnType <span class="hljs-title function_">functionName</span><span class="hljs-params">(parametersList)</span> {
+    <span class="hljs-comment">// code</span>
+}
+</code></pre>
+<p>We've already been using methods – the <code>public static void main(String[] args)</code> method. This method specifies the <code>public</code> access specifier, it specifies that it is <code>static</code>, it specifies that it doesn't return anything – using the <code>void</code> keyword, and it specifies that it takes in an Array of Strings as a parameter. This array of strings is automatically passed by java and is out of the scope of this article.</p>
+<p>Let's create a function in our class.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Hello!&quot;</span>);
+    }
+}
+</code></pre>
+<p>The <code>myFunction</code> has the <code>void</code> keyword because it doesn't return anything – i.e. it doesn't give us back any value. Printing out to the screen is NOT the same as giving back a value. You'll learn more about returning values from functions later on.</p>
+<p>We can <em>call</em> this method, or execute the code in this function by using the same dot notation with objects – as we did for variables, but this time, we add a pair of parentheses (<code>()</code>) at the end, to denote that we are <em>calling</em> the method, and not <em>referring</em> to it. Any values the method asks for should be given within these parentheses.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">MyClass</span> <span class="hljs-variable">myObject</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+myObject.myFunction(); <span class="hljs-comment">// Output: Hello!</span>
+</code></pre>
+<h3 id="accepting-values" tabindex="-1">Accepting values</h3>
+<p>Methods have the ability of asking for values from the user. These values should be declared in the parentheses when defining the function and should be separated by commas. This process of declaring these parameters is called declaring <em>formal parameters</em>. These parameters are declared the same as how variables are declared – a type, and then their name.</p>
+<p>Let's create a function to print out a string given to it.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(String str)</span> {
+        System.out.println(str);
+    }
+}
+</code></pre>
+<p>And now, call this method using:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">MyClass</span> <span class="hljs-variable">myClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+myClass.print(<span class="hljs-string">&quot;Hello, world!&quot;</span>); <span class="hljs-comment">// Output: Hello, world</span>
+</code></pre>
+<p>The time when you <em>actually</em> put in the values to be given to the function when calling it is called passing <em>actual parameters</em>.</p>
+<h3 id="returning-a-value" tabindex="-1">Returning a value</h3>
+<p>Methods also have the ability of returning a <strong>single value</strong> back to the caller. This value can then be assigned to a variable <strong>of the same type as that of the value</strong>. Never forget that java is strongly typed!</p>
+<p>To do so, first you need to specify what type value the method will return, and then return that value using the <code>return</code> keyword. Let's create a function that returns <code>&quot;Hello world!&quot;</code> back to the caller.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    String myFunction { <span class="hljs-comment">// using String instead of void, because we&#x27;re returning a string</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello world!&quot;</span>; <span class="hljs-comment">// Return a value using return</span>
+    }
+}
+</code></pre>
+<p>We can then access this value when we call the function in the <code>main()</code> method.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">MyClass</span> <span class="hljs-variable">myClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> myClass.myFunction(); <span class="hljs-comment">// The variable should be of the same type!</span>
+System.out.println(s);
+</code></pre>
+<p>Another example: Let's create a function to add two numbers together.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> { <span class="hljs-comment">// we&#x27;re returning an int this time</span>
+        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> x + y;
+        <span class="hljs-keyword">return</span> sum; <span class="hljs-comment">// you can also return variables</span>
+    }
+}
+</code></pre>
+<p>A function to add an exclamation mark to the end of a string:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    String <span class="hljs-title function_">addExclamationMark</span><span class="hljs-params">(String s)</span> { <span class="hljs-comment">// we&#x27;re taking in a string, and returning a string</span>
+        <span class="hljs-keyword">return</span> s + <span class="hljs-string">&quot;!&quot;</span>;
+    }
+}
+</code></pre>
+<h3 id="using-the-this-keyword" tabindex="-1">Using the <code>this</code> keyword</h3>
+<p>It is possible to access the values of an object's instance variables and call an object's methods by using the <code>this</code> keyword. The <code>this</code> keyword simply refers to the current object. It has the same properties as that of the object, and accessing the attributes and methods is the same process, by using the dot syntax.</p>
+<p>Let's create a class with an instance variable, and add a function to set a value to that variable:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    String name;
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setDefaultValueToName</span><span class="hljs-params">()</span> {
+        <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&quot;Bob&quot;</span>;
+    }
+}
+</code></pre>
+<p>It is possible to omit the <code>this</code> keyword, and just access the instance variable by its name, so you can write this code on line <code>4</code> instead:</p>
+<pre class="hljs lang-java"><code>name = <span class="hljs-string">&quot;Bob&quot;</span>;
+</code></pre>
+<p>But the above approach is not recommended, since there can be a possibility that the function has a variable with the same name as that of the instance variable. Let's see an example:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-type">int</span> x;
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">myFunc</span><span class="hljs-params">()</span> {
+        x = <span class="hljs-number">10</span>; <span class="hljs-comment">// Set&#x27;s the value of this.x to 10</span>
+        System.out.println(x); <span class="hljs-comment">// Output: 10</span>
+        <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>; <span class="hljs-comment">// Uh-oh! A variable with the same name has appeared!</span>
+        System.out.println(x); <span class="hljs-comment">// Output: 20</span>
+        System.out.println(<span class="hljs-built_in">this</span>.x); <span class="hljs-comment">// Output: 10</span>
+    }
+}
+</code></pre>
+<p>You can also call class methods using the <code>this</code> keyword.</p>
+<p><strong>Accessing static variables:</strong></p>
+<p>Static variables can be accessed the same way you were accessing them before – i.e. using <code>ClassName.variableName</code>.</p>
+<h2 id="access-specifiers" tabindex="-1">Access specifiers</h2>
+<p>Access specifiers are one of the most used features of OOP languages. They govern how data can be accessed by outsiders. There are four access specifiers in java:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Same Class</th>
+<th>Sub Class</th>
+<th>Package</th>
+<th>Elsewhere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public</code></td>
+<td>Access allowed</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>private</code></td>
+<td>Access allowed</td>
+<td>No access</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>Access allowed</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>Access allowed</td>
+<td>No access</td>
+<td>Access allowed</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>In this article, we'll focus on the <code>public</code> and <code>private</code> access specifiers only. Access specifiers can be applied to the attributes of a class, the methods of a class, and also the class itself. If you apply the <code>public</code> access specifier to a field in a class, that field can be accessed from anywhere in your java program. If you apply the <code>private</code> access specifier however, that field can only be accessed inside the class. Let's take a look at some examples:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">ChatApplication</span> {
+    <span class="hljs-keyword">public</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">long</span> phoneNumber;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Program</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">ChatApplication</span> <span class="hljs-variable">app</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChatApplication</span>();
+        app.name = <span class="hljs-string">&quot;John Doe&quot;</span>; <span class="hljs-comment">// name field can be accessed</span>
+        System.out.println(app.phoneNumber); <span class="hljs-comment">// Error - field is a private field</span>
+    }
+}
+</code></pre>
+<h3 id="getters-and-setters" tabindex="-1">Getters and Setters</h3>
+<p>Let's say you wanted to allow people to only be able to get the value of the <code>phoneNumber</code> variable and not set any value to it, in the above application. This is where getters and setters come into play. Getters are special methods that can be used to <em>get</em> the value of a <code>private</code> variable – i.e. return the value of the private variable, and setters are special methods that are used to <em>set</em> the value of a <code>private</code> variable – i.e. by accepting a parameter and setting that value.</p>
+<p>In Java, it is convention to name getters as <code>getVariableName</code> and setters as <code>setVariableName</code>.</p>
+<p>Let's create a getter for the <code>phoneNumber</code> variable.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">ChatApplication</span> {
+    <span class="hljs-keyword">public</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">long</span> phoneNumber;
+
+    <span class="hljs-type">long</span> <span class="hljs-title function_">getPhoneNumber</span><span class="hljs-params">()</span> { <span class="hljs-comment">// return type is the same as the variable type</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.phoneNumber; <span class="hljs-comment">// or: return phoneNumber;</span>
+    }
+}
+</code></pre>
+<p>Now if you want to get the value of the <code>phoneNumber</code> variable, you can say <code>app.getPhoneNumber()</code>, like so:</p>
+<pre class="hljs lang-java"><code>System.out.println(app.getPhoneNumber());
+</code></pre>
+<p>Now let's create a setter for the <code>phoneNumber</code> variable as well. Chat applications usually verify your phone number when you change it, so you can add logic for that here.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">ChatApplication</span> {
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPhoneNumber</span><span class="hljs-params">(<span class="hljs-type">long</span> phoneNumber)</span> { <span class="hljs-comment">// void return type, but the parameter is same type</span>
+        <span class="hljs-comment">// custom logic to check phone number</span>
+
+        <span class="hljs-comment">// set the variable. we&#x27;re using &quot;this&quot; because there already is a variable named &quot;phoneNumber&quot; in this function.</span>
+        <span class="hljs-built_in">this</span>.phoneNumber = phoneNumber;
+    }
+}
+</code></pre>
+<p>If you want to set a <code>phoneNumber</code>, you can do: <code>app.setPhoneNumber(123456);</code>.</p>
+<h2 id="constructors" tabindex="-1">Constructors</h2>
+<p>Notice that there are parentheses after calling <code>new ClassName()</code>? This allows us to pass custom values inside that parentheses to use during object creation. The method that uses these values to create a custom object is called a class constructor. A constructor is just like a method, except it has a few differences:</p>
+<ul>
+<li>
+<p>The name of the constructor method <strong>matches</strong> the name of the class, even in capitalisation</p>
+</li>
+<li>
+<p>The constructor does <strong>NOT</strong> have a return type, not even void, because it can't return anything</p>
+</li>
+<li>
+<p>A constructor CAN have an access specifier, but setting the access specifier to <code>private</code> will prevent the object from being created.</p>
+</li>
+</ul>
+<p>Let's create a constructor that accepts a <code>name</code> and sets it to an instance variable:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    String name;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyClass</span><span class="hljs-params">(String name)</span> { <span class="hljs-comment">// Constructor function. Same name as the class with NO return type</span>
+        <span class="hljs-comment">// Set the &quot;name&quot; instance variable of the class to the &quot;name&quot; parameter of the constructor</span>
+        <span class="hljs-built_in">this</span>.name = name;
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Program</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">MyClass</span> <span class="hljs-variable">obj1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>(<span class="hljs-string">&quot;John Doe&quot;</span>); <span class="hljs-comment">// Constructor arguments are passed during object creation</span>
+        <span class="hljs-type">MyClass</span> <span class="hljs-variable">obj2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>(<span class="hljs-string">&quot;Jane Doe&quot;</span>); <span class="hljs-comment">// Different argument</span>
+
+        System.out.println(obj1.name); <span class="hljs-comment">// Output: John Doe</span>
+        System.out.println(obj2.name); <span class="hljs-comment">// Output: Jane Doe</span>
+    }
+}
+</code></pre>
+<h2 id="method-overloading" tabindex="-1">Method Overloading</h2>
+<p>Sometimes, you may want to let a single method accept multiple sets of parameters. These multiple sets may be parameters of different types, or different lengths of parameters. Let's take a look at the <code>add()</code> function from way earlier:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+    <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<p>This <code>add()</code> function performs addition of two <code>int</code> datatypes. But, addition works with other numerical datatypes as well – like <code>double</code> or <code>long</code>.</p>
+<p>We can use a feature of java called method overloading, where we can specify a different set of parameters with the same method name. To do so, just create another method with the same name, but with a different set of parameters, and it may have a different return type. For example, for addition of doubles:</p>
+<pre class="hljs lang-java"><code><span class="hljs-comment">// The method to overload</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+    <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-comment">// Same method name, but different parameters</span>
+<span class="hljs-type">double</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b)</span> {
+    <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<p>Now, if you call <code>add()</code> with two ints or with two doubles, java will automatically recognise the correct method and return the correct value (the benefits of a strongly typed language!).</p>
+<h3 id="calling-the-old-function" tabindex="-1">Calling the old function</h3>
+<p>This code is getting repetitive. What programmers usually do, for longer functions, instead of rewriting the logic again, they call the previous method by making the parameters compatible, so in our case, converting the doubles to ints, or vice-versa.</p>
+<p>Let's add a function to add an integer and a double:</p>
+<pre class="hljs lang-java"><code><span class="hljs-comment">// The method to overload</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+    <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-comment">// Same method name, but different parameters</span>
+<span class="hljs-type">double</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b)</span> {
+    <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-comment">// return a double, because it is a larger data type, avoiding dataloss</span>
+<span class="hljs-type">double</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">double</span> b)</span> {
+    <span class="hljs-keyword">return</span> add((<span class="hljs-type">double</span>) a, b); <span class="hljs-comment">// type cast!</span>
+}
+</code></pre>
+<h3 id="overloading-constructors" tabindex="-1">Overloading constructors</h3>
+<p>Since class constructors are methods too, you can overload them using the same way, but this time, you can't set a different return type. You also can't call <code>new ClassName()</code>, since that creates a new object all together, but you can use <code>this()</code> and pass parameters there.</p>

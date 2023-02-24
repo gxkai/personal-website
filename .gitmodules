@@ -1,0 +1,12 @@
+[submodule "dtmicrovue"]
+	path = dtmicrovue
+	url = git@github.com:TurboMini/dtmicrovue.git
+[submodule "dtmicro"]
+	path = dtmicro
+	url = git@github.com:TurboMini/dtmicro.git
+[submodule "cms/dtmicro"]
+	path = cms/dtmicro
+	url = git@github.com:TurboMini/dtmicro.git
+[submodule "cms/dtmicrovue"]
+	path = cms/dtmicrovue
+	url = git@github.com:TurboMini/dtmicrovue.git

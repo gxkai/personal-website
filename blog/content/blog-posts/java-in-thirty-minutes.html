@@ -1,0 +1,677 @@
+<p>This article will cover the basic concepts of Java, and you'll be done with it in thirty minutes.</p>
+<h2 id="prerequisites" tabindex="-1">Prerequisites</h2>
+<p>This article assumes that you have:</p>
+<ul>
+<li>A way to run java code. This can be done using an IDE like <a href="https://jetbrains.com/idea">IntelliJ Idea</a>, a tool like <a href="https://bluej.org">BlueJ</a> or an online playground like <a href="https://code.sololearn.com/java">SoloLearn</a>. Alternatively, you can directly run java files using the <a href="https://java.com/download">Java Development Kit</a>.</li>
+</ul>
+<h2 id="anatomy-of-a-java-program" tabindex="-1">Anatomy of a Java Program</h2>
+<p>Write this java code in your editor.</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Program</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        System.out.println(<span class="hljs-string">&quot;Hello, world&quot;</span>);
+    }
+}
+</code></pre>
+<p>Don't worry about what this does, just execute the file and you should see <code>Hello World</code> printed on the screen.</p>
+<p>Let's now run through this program. All java programs must be written in a <code>class</code>. We can define a class using <code>class Classname</code>. In the above program, we put <code>public</code> so that this class can be accessed by everyone. Everything in the pair of curly brackets (<code>{}</code>) after the class definition is part of the class.</p>
+<p>Every class has a set of <code>methods</code> (sometimes called <code>functions</code>). The <code>main()</code> method in the above program is a special method. It tells Java that the code inside the <code>main()</code> method should be run when the program is called. Similar to the class, everything in the curly brackets (<code>{}</code>) after the method definition is part of the method. The code written inside the curly brackets gets executed when the method is run.</p>
+<p>You'll learn more about methods later.</p>
+<p>The <code>System.out.println</code> method is a function for printing stuff to the screen. This is how <code>Hello World</code> was printed on the screen. Remember this one, you'll use it a lot from now on.</p>
+<h2 id="variables-in-java" tabindex="-1">Variables in Java</h2>
+<p>Variables are containers used for storing data. A variable can only hold one type of data in Java. This makes Java a <strong>strongly typed</strong> language, since you have to define the type of the variable when <em>declaring</em> it.</p>
+<p>Here are some commonly used types of variables:</p>
+<ul>
+<li>
+<p><code>int</code> - An integer. It can hold numbers between -2<sup>32</sup> and 2<sup>32</sup>.</p>
+</li>
+<li>
+<p><code>long</code> - A longer integer. It can hold longer numbers.</p>
+</li>
+<li>
+<p><code>float</code> - A floating point. It can hold decimal numbers.</p>
+</li>
+<li>
+<p><code>double</code> - A longer decimal. It can hold longer floating points. This is generally used over the <code>float</code> datatype.</p>
+</li>
+<li>
+<p><code>char</code> - A character. It can hold a <strong>single</strong> character. It's value is <strong>ALWAYS</strong> enclosed in single quotes (<code>'</code>).</p>
+</li>
+<li>
+<p><code>boolean</code> - An on/off switch. It can hold two states - <code>true</code> or <code>false</code>.</p>
+</li>
+<li>
+<p><code>String</code> - A string of text. It can hold any text of any length. It's value is <strong>ALWAYS</strong> enclosed in double quotes. The <code>&quot;Hello World&quot;</code> in the above program is a <code>String</code></p>
+</li>
+</ul>
+<p>There are many many more types in java, but here are the most common ones.</p>
+<p>To declare a variable, follow this syntax:</p>
+<pre><code class="language-plain">type variableName = value;
+</code></pre>
+<blockquote>
+<p>Never forget the semicolon (<code>;</code>)! This character is used to <em>terminate</em> a statement in java. It is always put after a code statement, <strong>EXCEPT</strong> when a block is being declared – when there's a <code>{</code> or <code>}</code> at the end</p>
+</blockquote>
+<p>Let's create a few variables in our program:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">String</span> <span class="hljs-variable">firstName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;John&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">lastName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Doe&quot;</span>;
+<span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> <span class="hljs-number">21</span>;
+<span class="hljs-type">boolean</span> <span class="hljs-variable">married</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;
+<span class="hljs-type">char</span> <span class="hljs-variable">gender</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;M&#x27;</span>;
+<span class="hljs-type">double</span> <span class="hljs-variable">gpa</span> <span class="hljs-operator">=</span> <span class="hljs-number">3.5</span>;
+</code></pre>
+<blockquote>
+<p>Notice how the variable names are always <strong>ONE WORD</strong>? This is because in java, variables can not have spaces in their names. To differentiate between words in variables, we use a type of casing called <code>camelCase</code>. This means that every first letter of every word is capitalized <strong>EXCEPT</strong> the first letter of the first word.</p>
+</blockquote>
+<p>You can print out the value of a variable by using the <code>System.out.println()</code> function:</p>
+<pre class="hljs lang-java"><code>System.out.println(firstName);
+System.out.println(lastName);
+System.out.println(age);
+</code></pre>
+<p>You should see <code>John</code>, <code>Doe</code> and <code>21</code> printed on your console on separate lines. Notice how there are <strong>NO QUOTES</strong> this time? This is because we're referring to a variable name, instead of declaring a string. See the code in the code block below and tell me what you think will be outputted:</p>
+<pre class="hljs lang-java"><code>System.out.println(firstName);
+System.out.println(<span class="hljs-string">&quot;lastName&quot;</span>);
+</code></pre>
+<p>The output will be <code>John</code> and <code>lastName</code> on separate lines, since <code>firstName</code> is referring to a variable, and <code>&quot;lastName&quot;</code> is creating a string with the value <code>lastName</code>.</p>
+<h3 id="changing-the-value-of-variables" tabindex="-1">Changing the value of variables</h3>
+<p>You are allowed to change the values of variables in java. This can be done using a similar syntax to declaring variables, but instead, you must <strong>omit</strong> the type.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+System.out.println(x); <span class="hljs-comment">// Output: 10</span>
+
+x = <span class="hljs-number">20</span>;
+System.out.println(x); <span class="hljs-comment">// Output: 20</span>
+</code></pre>
+<blockquote>
+<p>The code beginning with <code>//</code> are called comments. These are IGNORED by java, and are only visible to people who are directly viewing the file. This is useful for putting notes or in this case, writing the output of the following statement, for easier understanding.</p>
+</blockquote>
+<p>You can also declare variable WITHOUT giving it a value, i.e. without <em>initializing</em> it.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> x; <span class="hljs-comment">// Declare the variable</span>
+
+x = <span class="hljs-number">10</span>; <span class="hljs-comment">// Give it a value</span>
+</code></pre>
+<p>You can also set the value of a variable to another variable. This really only works with primitive datatypes. You'll learn more about primitive datatypes in the next section. To set the value of a variable to another variable, just put the name of the variable as the new value:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+<span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> a; <span class="hljs-comment">// b now has the value of a (10)</span>
+</code></pre>
+<h3 id="final-variables" tabindex="-1">Final variables</h3>
+<p>Say you don't want to be able to change the value of variable. You can use the <code>final</code> keyword before declaring the variable. If you use <code>final</code> variables however, you HAVE to initialize it at the time of declaration. Here's an example:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">final</span> <span class="hljs-type">float</span> <span class="hljs-variable">pi</span> <span class="hljs-operator">=</span> <span class="hljs-number">3.14</span>;
+
+System.out.println(pi); <span class="hljs-comment">// Output: 3.14</span>
+</code></pre>
+<p>If you try changing the value of <code>pi</code>, you will get an error.</p>
+<h3 id="declare-many-variables-at-once" tabindex="-1">Declare many variables at once</h3>
+<p>You can declare multiple variables on one line IF they are the same type.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>, y = <span class="hljs-number">20</span>, z = <span class="hljs-number">30</span>;
+
+String a, b, c; <span class="hljs-comment">// Declaring without initializing</span>
+</code></pre>
+<h2 id="data-types-and-type-casting" tabindex="-1">Data types and Type casting</h2>
+<p>Let's learn more about variable types or data types in java. There are two <em>types of data types</em> in java – <code>primitive</code> and <code>non-primitive</code> types.</p>
+<h3 id="primitive-types" tabindex="-1">Primitive types</h3>
+<p>Primitive data types specify the size and type of the variable only. They have no additional methods and are <strong>built-in</strong> to java.</p>
+<p>There are <strong>eight</strong> primitive datatypes in java.</p>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Size</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>byte</code></td>
+<td>1 byte</td>
+<td>Stores whole numbers from -128 to 127</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>2 bytes</td>
+<td>Stores whole numbers from -32,768 to 32,767</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>4 bytes</td>
+<td>Stores whole numbers from -2,147,483,648 to 2,147,483,647</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>8 bytes</td>
+<td>Stores whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>4 bytes</td>
+<td>Stores fractional numbers. Sufficient for storing 6 to 7 decimal digits</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>8 bytes</td>
+<td>Stores fractional numbers. Sufficient for storing 15 decimal digits</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>1 bit</td>
+<td>Stores true or false values</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>2 bytes</td>
+<td>Stores a single character/letter or ASCII values</td>
+</tr>
+</tbody>
+</table>
+<h3 id="non-primitive-types" tabindex="-1">Non-Primitive Types</h3>
+<p>Non Primitive data types specify the type of the variable and provide methods and attributes to modify the type. Non-Primitive types can be created by the programmer, but creating primitive types is impossible. The <code>String</code> type is a non-primitive data type, since it allows you to modify its value using methods. We'll learn more about string methods later on.</p>
+<h3 id="type-casting" tabindex="-1">Type Casting</h3>
+<p>It is possible to convert variables from one type to another. In this section, you'll learn how to convert variables of one <strong>primitive data type</strong> to another.</p>
+<p>There are two types of type casts – the one done by java automatically (<code>Implicit</code> casting) and the one done manually by us (<code>Explicit</code> casting).</p>
+<p>Implicit casting is done from a datatype with a smaller size to a datatype of a larger size, and explicit casting is done the other way around. See the table in the section about primitive datatypes to see the sizes of different primitive types.</p>
+<p>Let's do some type casting:</p>
+<pre class="hljs lang-java"><code><span class="hljs-comment">// Implicit</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">anInt</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>; <span class="hljs-comment">// Int has a size of 4 bytes</span>
+<span class="hljs-type">double</span> <span class="hljs-variable">aDouble</span> <span class="hljs-operator">=</span> anInt; <span class="hljs-comment">// Double has a size of 8 bytes, so it is bigger than int</span>
+
+System.out.println(anInt); <span class="hljs-comment">// Output: 10</span>
+System.out.println(aDouble); <span class="hljs-comment">// Output: 10.00</span>
+</code></pre>
+<p>Notice how the <code>.00</code> part of the double was automatically set for us. This is why implicit casting is only possible from smaller to larger types.</p>
+<p>We can manually cast from a larger to a smaller type by using the type cast syntax. To cast a variable from type <code>type1</code> to type <code>type2</code>:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">type2</span> <span class="hljs-variable">variable_name</span> <span class="hljs-operator">=</span> (type2) variable_of_type1_type;
+</code></pre>
+<p>Let's see some explicit casting in action:</p>
+<pre class="hljs lang-java"><code><span class="hljs-comment">// Explicit</span>
+<span class="hljs-type">double</span> <span class="hljs-variable">aDouble</span> <span class="hljs-operator">=</span> <span class="hljs-number">3.14</span>; <span class="hljs-comment">// Double has a size of 8 bytes</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">anInt</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>) aDouble; <span class="hljs-comment">// Int has a size of 4 bytes, so it is smaller</span>
+
+System.out.println(aDouble); <span class="hljs-comment">// Output: 3.14</span>
+System.out.println(anInt); <span class="hljs-comment">// Output: 3</span>
+
+<span class="hljs-comment">// Explicit casting also works the other way, but it is pointless</span>
+<span class="hljs-type">double</span> <span class="hljs-variable">anotherDouble</span> <span class="hljs-operator">=</span> (<span class="hljs-type">double</span>) anInt;
+System.out.println(anotherDouble); <span class="hljs-comment">// Output: 3.00</span>
+</code></pre>
+<p>Wait! Where did the <code>.14</code> go? Since <code>int</code> can't hold decimal figures, the <code>3.14</code> had to be rounded to <code>3</code> so that it can be stored in the <code>int</code> variable. When we converted <code>int</code> to <code>double</code> again, the <code>.14</code> was lost.</p>
+<h2 id="operators-in-java" tabindex="-1">Operators in Java</h2>
+<p>Operators are used to perform operations on variables and values. Operators can be used on variables, values, or a variable and a value.</p>
+<p>There are <strong>six</strong> types of operators in java:</p>
+<ul>
+<li>
+<p>Arithmetic operators – For performing mathematical operations</p>
+</li>
+<li>
+<p>Concatenation operator – For merging two strings together</p>
+</li>
+<li>
+<p>Assignment operators – For assigning values to variables</p>
+</li>
+<li>
+<p>Comparison operators – For comparing two variables or values</p>
+</li>
+<li>
+<p>Logical operators – For defining logic</p>
+</li>
+<li>
+<p>Bitwise operators – For performing operations on the bits and bytes of variables and values. We'll not be looking at bitwise operators in this article.</p>
+</li>
+</ul>
+<h3 id="arithmetic-operators" tabindex="-1">Arithmetic operators</h3>
+<p>There are 7 arithmetic operators in java.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Name</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>Addition</td>
+<td>Adds together two values</td>
+<td>x + y</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Subtraction</td>
+<td>Subtracts one value from another</td>
+<td>x - y</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Multiplication</td>
+<td>Multiplies two values</td>
+<td>x * y</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Division</td>
+<td>Divides one value by another</td>
+<td>x / y</td>
+</tr>
+<tr>
+<td>%</td>
+<td>Modulus</td>
+<td>Divides two values and returns the reminder</td>
+<td>x % y</td>
+</tr>
+<tr>
+<td>++</td>
+<td>Increment</td>
+<td>Increases the value of a variable by 1</td>
+<td>++x</td>
+</tr>
+<tr>
+<td>--</td>
+<td>Decrement</td>
+<td>Decreases the value of a variable by 1</td>
+<td>--x</td>
+</tr>
+</tbody>
+</table>
+<p>The first five are pretty self explanatory. Let's take a look at the <code>++</code> and <code>--</code> operators. They are of two types – postfix and prefix. The main difference is that prefix <strong>FIRST</strong> increments/decrements the variable and then returns the value, and postfix <strong>FIRST</strong> returns the value and then increments/decrements the variable. Let's take a look at these operators:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+
+<span class="hljs-comment">// Postfix</span>
+x++; <span class="hljs-comment">// Increment 10 to 11</span>
+x--; <span class="hljs-comment">// Decrement 11 to 10</span>
+
+<span class="hljs-comment">// Prefix</span>
+++x; <span class="hljs-comment">// Increment 10 to 11</span>
+--x; <span class="hljs-comment">// Decrement 11 to 10</span>
+</code></pre>
+<p>Well they do the same thing right? Well, not really. The main difference comes into light when you <strong>use the values returned</strong> by these operations.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+System.out.println(x++); <span class="hljs-comment">// Output: 10</span>
+<span class="hljs-comment">// The actual value of x is 11</span>
+
+x = <span class="hljs-number">10</span>; <span class="hljs-comment">// Set x back to 10</span>
+System.out.println(++x); <span class="hljs-comment">// Output: 11</span>
+<span class="hljs-comment">// The actual value of x is 11</span>
+</code></pre>
+<p>This happens because the postfix operator (<code>x++</code>) returns first and increments later, and the prefix operator (<code>++x</code>) increments first and returns later. In general you should always use the prefix operator to avoid hidden bugs.</p>
+<h3 id="concatenation-operator" tabindex="-1">Concatenation operator</h3>
+<p>This operator allows us to add/merge two strings together. It is represented by the plus sign (<code>+</code>).</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">String</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot; world&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> a + b; <span class="hljs-comment">// c becomes: Hello world</span>
+</code></pre>
+<p>The concatenation operator can also be used with a string and another <strong>primitive</strong> type value:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+System.out.println(<span class="hljs-string">&quot;x is: &quot;</span> + x); <span class="hljs-comment">// Output: x is 10</span>
+</code></pre>
+<p>Be sure to not get confused with the <strong>arithmetic addition operator</strong> and the <strong>string concatenation operator</strong>.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">anInt</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">aString</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;10&quot;</span>; <span class="hljs-comment">// 10, in a string</span>
+System.out.println(anInt + <span class="hljs-number">5</span>); <span class="hljs-comment">// Output: 15 (int)</span>
+System.out.println(aString + <span class="hljs-number">5</span>); <span class="hljs-comment">// Output: 105 (String)</span>
+</code></pre>
+<p>This happens because the concatenation operator converts all of its operands to strings first, and then does the operation while the addition operator only works with numbers.</p>
+<h3 id="assignment-operators" tabindex="-1">Assignment operators</h3>
+<p>Assignment operators set values to variables. You've been using the <code>=</code> operator this whole time. That is the default assignment operator, and this operator is the only operator that works when the <strong>variable is not already defined</strong>.</p>
+<p>There are other assignment operators, that are a combination of an arithmetic operator and the default assignment operator (<code>=</code>). Below are some examples:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+x += <span class="hljs-number">5</span>; <span class="hljs-comment">// or x = x + 5</span>
+x -= <span class="hljs-number">5</span>; <span class="hljs-comment">// or x = x - 5</span>
+x *= <span class="hljs-number">5</span>; <span class="hljs-comment">// or x = x * 5</span>
+x /= <span class="hljs-number">5</span>; <span class="hljs-comment">// or x = x / 5</span>
+x %= <span class="hljs-number">5</span>; <span class="hljs-comment">// or x = x % 5</span>
+</code></pre>
+<p>These assignment operators are meant merely for the ease of programming.</p>
+<h3 id="comparison-operators" tabindex="-1">Comparison operators</h3>
+<p>These operators are used to compare two values. They only work with numbers.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Name</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>Equal to</td>
+<td>x == y</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>Not equal</td>
+<td>x != y</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>Greater than</td>
+<td>x &gt; y</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>Less than</td>
+<td>x &lt; y</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+<td>x &gt;= y</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+<td>x &lt;= y</td>
+</tr>
+</tbody>
+</table>
+<p>These operators <strong>always</strong> return a boolean.</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">boolean</span> <span class="hljs-variable">aBoolean</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span> &gt; <span class="hljs-number">3</span>; <span class="hljs-comment">// true</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">anotherBoolean</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span> != <span class="hljs-number">10</span>; <span class="hljs-comment">// false</span>
+</code></pre>
+<p><strong>Why <code>==</code> and why not <code>=</code>?</strong></p>
+<p>The equal to operator <code>==</code> has two <code>==</code> symbols because a single <code>=</code> is the assignment operator, and unlike the concatenation and addition operators, these two operators <strong>CAN</strong> clash, like in the example below:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">boolean</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span> == <span class="hljs-number">10</span>;
+</code></pre>
+<p>So be sure to double-check the correct operator!</p>
+<h3 id="logical-operators" tabindex="-1">Logical operators</h3>
+<p>Logical operators add logic to operations. The AND (<code>&amp;&amp;</code>) and the OR operators (<code>||</code>) are used to combine multiple conditional operators together. These operators return booleans based on their operands.</p>
+<p><strong>AND operator (<code>&amp;&amp;</code>):</strong></p>
+<p>Syntax: <code>boolean1 &amp;&amp; boolean2</code></p>
+<p>This operator returns <code>true</code> if both <code>boolean1</code> and <code>boolean2</code> are true, and <code>false</code> otherwise.</p>
+<table>
+<thead>
+<tr>
+<th>Value of <code>boolean1</code></th>
+<th>Value of <code>boolean2</code></th>
+<th>Returned value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre class="hljs lang-java"><code><span class="hljs-number">10</span> &gt; <span class="hljs-number">20</span> &amp;&amp; <span class="hljs-number">20</span> &lt; <span class="hljs-number">10</span>; <span class="hljs-comment">// true</span>
+</code></pre>
+<p><strong>OR operator (<code>||</code>)</strong></p>
+<p>Syntax: <code>boolean1 || boolean2</code></p>
+<p>This operator returns <code>true</code> if either <code>boolean1</code> or <code>boolean2</code> are true, and <code>false</code> otherwise.</p>
+<table>
+<thead>
+<tr>
+<th>Value of <code>boolean1</code></th>
+<th>Value of <code>boolean2</code></th>
+<th>Returned value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td><code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre class="hljs lang-java"><code><span class="hljs-number">10</span> &gt; <span class="hljs-number">20</span> || <span class="hljs-number">20</span> &gt; <span class="hljs-number">10</span>; <span class="hljs-comment">// true</span>
+</code></pre>
+<p><strong>NOT operator (<code>!</code>)</strong></p>
+<p>There is another logical operator called NOT. This one behaves differently from the other two. It <strong>reverses</strong> the boolean value given to it, meaning if <code>true</code> is passed to it, it returns <code>false</code> and vice-versa.</p>
+<p>Syntax: <code>!boolean1</code></p>
+<p>Example:</p>
+<pre class="hljs lang-java"><code>System.out.println(!<span class="hljs-literal">true</span>); <span class="hljs-comment">// Output: false</span>
+
+<span class="hljs-comment">// Paranthesis can be used for operations that have spaces in them</span>
+System.out.println(!(<span class="hljs-number">3</span> &gt; <span class="hljs-number">5</span>)); <span class="hljs-comment">// Output: true</span>
+</code></pre>
+<h2 id="the-java-math-class" tabindex="-1">The java <code>Math</code> class</h2>
+<p>Just like <code>System</code>, java provides a <code>Math</code> class that has a bunch of useful methods. They are used for performing operations on numbers. To see a complete list of methods in the <code>Math</code> class, head <a href="https://www.w3schools.com/java/java_ref_math.asp">here</a>.</p>
+<p>For now, I'll show you an example of a few commonly used methods:</p>
+<pre class="hljs lang-java"><code><span class="hljs-comment">// Return absolute value</span>
+Math.abs(-<span class="hljs-number">5</span>); <span class="hljs-comment">// 5</span>
+Math.abs(<span class="hljs-number">5</span>); <span class="hljs-comment">// 5</span>
+
+<span class="hljs-comment">// Rounding functions</span>
+Math.round(<span class="hljs-number">5.5</span>); <span class="hljs-comment">// 6</span>
+<span class="hljs-comment">// Round to the bottom</span>
+Math.floor(<span class="hljs-number">6.9</span>); <span class="hljs-comment">// 6</span>
+<span class="hljs-comment">// Round to the top</span>
+Math.ceil(<span class="hljs-number">5.1</span>); <span class="hljs-comment">// 6</span>
+
+<span class="hljs-comment">// Get largest and smallest number, respectively</span>
+Math.min(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// 2</span>
+Math.max(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// 3</span>
+
+<span class="hljs-comment">// Exponents (x to the power y)</span>
+Math.pow(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// 8 (2 to the power 3)</span>
+
+<span class="hljs-comment">// Square root and cube root, respectively</span>
+Math.sqrt(<span class="hljs-number">16</span>); <span class="hljs-comment">// 4</span>
+Math.cbrt(<span class="hljs-number">8</span>); <span class="hljs-comment">// 2</span>
+
+<span class="hljs-comment">// Generate a random number between 0 and 1</span>
+Math.random(); <span class="hljs-comment">// 0.13213123113...</span>
+Math.random(); <span class="hljs-comment">// 0.90820394122...</span>
+</code></pre>
+<h2 id="conditional-programming-in-java" tabindex="-1">Conditional programming in java</h2>
+<p>Here comes the meat of programming – conditional programming. Conditional programming is performing different actions based on different conditions. Say you wanted to perform a certain action when the value of a certain variable equals <code>10</code>, or you wanted to run some code when a boolean is <code>false</code>, you can do that using java's two types of conditional statements - <code>if</code> and <code>switch</code>.</p>
+<h3 id="if%2C-if..else-and-if..else-if..else-statements" tabindex="-1"><code>if</code>, <code>if..else</code> and <code>if..else if..else</code> statements</h3>
+<p><code>if</code> statements in java perform the defined action <strong>IF</strong> the boolean passed to it is <strong>true</strong>. Here's the basic syntax:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">if</span> (boolean1) {
+    <span class="hljs-comment">// Code that will be run if boolean1 is true</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (boolean2) {
+    <span class="hljs-comment">// Code that will be run if boolean2 is true AND the above boolean is false</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Code that will be run if both the booleans above are false</span>
+}
+
+<span class="hljs-comment">// You can add as many else ifs as you want, or none at all, but else can only be added once</span>
+</code></pre>
+<p>Let's see some examples:</p>
+<p><strong>Program to see if a user is above 18 years of age:</strong></p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> <span class="hljs-number">18</span>;
+<span class="hljs-keyword">if</span> (age &lt; <span class="hljs-number">18</span>) {
+    System.out.println(<span class="hljs-string">&quot;You&#x27;re under 18!&quot;</span>);
+} <span class="hljs-keyword">else</span> {
+    System.out.println(<span class="hljs-string">&quot;You&#x27;re above 18!&quot;</span>);
+} <span class="hljs-comment">// Output: You&#x27;re above 18!</span>
+</code></pre>
+<p><strong>Program to print if a number is even or odd:</strong></p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;
+<span class="hljs-keyword">if</span> (num % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) { <span class="hljs-comment">// Even numbers are divisible by 2 - they give 0 remainder</span>
+    System.out.println(<span class="hljs-string">&quot;Even&quot;</span>);
+} <span class="hljs-keyword">else</span> {
+    System.out.println(<span class="hljs-string">&quot;Odd&quot;</span>);
+} <span class="hljs-comment">// Output: Odd</span>
+</code></pre>
+<p><strong>Program to print if a number is negative, positive or zero:</strong></p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> -<span class="hljs-number">5</span>;
+<span class="hljs-comment">// If there are no brackets, the next statement and ONLY the next statement is considered</span>
+<span class="hljs-keyword">if</span> (num &lt; <span class="hljs-number">0</span>) System.out.println(<span class="hljs-string">&quot;Negative&quot;</span>);
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num &gt; <span class="hljs-number">0</span>) System.out.println(<span class="hljs-string">&quot;Positive&quot;</span>);
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num == <span class="hljs-number">0</span>) System.out.println(<span class="hljs-string">&quot;Zero&quot;</span>);
+<span class="hljs-comment">// We don&#x27;t need an else, since one of the above booleans WILL be true.</span>
+
+<span class="hljs-comment">// Output: Negative</span>
+</code></pre>
+<p><strong>Program to show a secret message if the user's name is admin:</strong></p>
+<pre class="hljs lang-java"><code><span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;not_admin&quot;</span>;
+<span class="hljs-keyword">if</span> (username == <span class="hljs-string">&quot;admin&quot;</span>) System.out.println(<span class="hljs-string">&quot;You are the admin!&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Hello, &quot;</span> + username);
+<span class="hljs-comment">// Output: Hello, not_admin</span>
+</code></pre>
+<h3 id="switch...case-statements" tabindex="-1"><code>switch...case</code> statements</h3>
+<p>If your conditions are all using the <code>==</code> operator, and you have many many conditions, you can use the <code>switch..case</code> statement instead of <code>if..else</code>.</p>
+<p>Here's the syntax:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">switch</span>(variable_to_be_checked) {
+    <span class="hljs-keyword">case</span> value1: <span class="hljs-comment">// variable equals value1</span>
+        <span class="hljs-comment">// code</span>
+        <span class="hljs-keyword">break</span>; <span class="hljs-comment">// Optional: Terminates the switch statement</span>
+    <span class="hljs-keyword">case</span> value2: <span class="hljs-comment">// variable equals value2</span>
+        <span class="hljs-comment">// code</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>: <span class="hljs-comment">// None of the above values matched (like else in if..else)</span>
+        <span class="hljs-comment">// code</span>
+        <span class="hljs-keyword">break</span>;
+}
+</code></pre>
+<p>Here's an example program:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">channelNumber</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+<span class="hljs-keyword">switch</span>(channelNumber) {
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        System.out.println(<span class="hljs-string">&quot;Loading news channel&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+        System.out.println(<span class="hljs-string">&quot;Loading sports channel&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+        System.out.println(<span class="hljs-string">&quot;Loading cartoon channel&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        System.out.println(<span class="hljs-string">&quot;No channel found&quot;</span>);
+        <span class="hljs-keyword">break</span>; <span class="hljs-comment">// break is optional here, as it does nothing</span>
+}
+</code></pre>
+<p><strong>What is <code>break</code>?</strong></p>
+<p>The <code>break</code> statement makes java exit out of the <code>switch</code> statement. Due to the nature of the switch statement, it will keep going through cases until it reaches the end, or encounters a <code>break</code>.  That's why it is important to <code>break</code> out whenever there's a match, and the code has been executed, but this is also intentional, since it allows us to add <strong>aliases</strong>. Let's say I wanted to allow channel numbers <code>4</code> and <code>5</code> to match the news channel as well in the above program. Here's how the code will look:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">channelNumber</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+<span class="hljs-keyword">switch</span>(channelNumber) {
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+    <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+        System.out.println(<span class="hljs-string">&quot;Loading news channel&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+        System.out.println(<span class="hljs-string">&quot;Loading sports channel&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+        System.out.println(<span class="hljs-string">&quot;Loading cartoon channel&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        System.out.println(<span class="hljs-string">&quot;No channel found&quot;</span>);
+        <span class="hljs-keyword">break</span>; <span class="hljs-comment">// break is optional here, as it does nothing</span>
+}
+</code></pre>
+<p>Since by default, <code>switch</code> keeps on going through cases until it is told to get out by the <code>break</code> keyword or reaches the end, we can use it to create <em>fall-through</em> cases to match more than one value.</p>
+<h2 id="loops-in-java" tabindex="-1">Loops in java</h2>
+<p>In java, the code moves from top to bottom, <strong>once</strong>. If we want to repeat some code a certain number of times, we can use loops. There are two types of loops in java – the <code>while</code> loop and the <code>for</code> loop. Let's take a look at these loops.</p>
+<h3 id="while-loop" tabindex="-1"><code>while</code> loop</h3>
+<p>The <code>while</code> loop accepts a boolean condition, and executes the code within the <code>{}</code> as long as the condition is true.</p>
+<p>Syntax:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">while</span> (boolean1) {
+    <span class="hljs-comment">// code</span>
+}
+</code></pre>
+<p>Example program to print out numbers from 1 to 5:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+<span class="hljs-keyword">while</span> (i &lt;= <span class="hljs-number">5</span>) {
+    System.out.println(i);
+    i++; <span class="hljs-comment">// If this is omitted, the loop goes on forever!</span>
+}
+</code></pre>
+<p><strong>The <code>do..while</code> loop</strong></p>
+<p>There is another kind of <code>while</code> loop: The <code>do..while</code> loop. The syntax of this is similar to that of the <code>while</code> loop. The only difference is that the code in this loop will execute <strong>ATLEAST</strong> once.</p>
+<p>Syntax:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">do</span> {
+    <span class="hljs-comment">// code</span>
+} <span class="hljs-keyword">while</span> (boolean1);
+}
+</code></pre>
+<h3 id="the-for-loop" tabindex="-1">The <code>for</code> loop</h3>
+<p>The <code>for</code> loop is different. Instead of accepting just a condition like the <code>while</code> loop, it accepts three statements. This loop should be used when you <strong>know the number of times the loop should execute</strong>.</p>
+<p>Syntax:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">for</span> (statement <span class="hljs-number">1</span>; statement <span class="hljs-number">2</span>; statement <span class="hljs-number">3</span>) {
+    <span class="hljs-comment">// code</span>
+}
+</code></pre>
+<p>Here's how the statements will be executed:</p>
+<ul>
+<li>
+<p>Statement 1 is executed ONCE <strong>before</strong> the execution of the loop. This statement should be used for declaring/initializing variables</p>
+</li>
+<li>
+<p>Statement 2 is the condition for the loop.</p>
+</li>
+<li>
+<p>Statement 3 is executed AFTER EVERY loop iteration. This statement should be used for changing the variables declared in statement 1.</p>
+</li>
+</ul>
+<p>We can convert the above while loop program for printing numbers from 1 to 5 to a for loop:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) {
+    System.out.println(i);
+}
+</code></pre>
+<p>You will notice that the statements used in both the programs are the same, except that in the for loop, the statements are in the loop.</p>
+<h3 id="break-and-continue" tabindex="-1"><code>break</code> and <code>continue</code></h3>
+<p>The <code>break</code> and <code>continue</code> statements are used in loops. You've already seen that the <code>break</code> keyword is used in switch to <strong>exit out</strong> of the switch statement. It can also be used in loops to exit out of the loop.</p>
+<p>Example:</p>
+<pre class="hljs lang-java"><code><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span> (i &lt; <span class="hljs-number">10</span>) {
+    <span class="hljs-keyword">if</span> (i == <span class="hljs-number">4</span>) <span class="hljs-keyword">break</span>;
+    System.out.println(i);
+    i++
+}
+</code></pre>
+<p>Output of the above loop:</p>
+<pre><code class="language-plain">0
+1
+2
+3
+</code></pre>
+<p>The loop will exit when the <code>break</code> statement is executed.</p>
+<p><strong><code>continue</code>:</strong></p>
+<p>The <code>continue</code> statement is similar to the <code>break</code> statement, but instead of exiting the loop entirely, it <strong>starts the next iteration of the loop</strong>, meaning it puts the control back to the top.</p>
+<p>Example:</p>
+<pre class="hljs lang-java"><code><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    <span class="hljs-keyword">if</span> (i == <span class="hljs-number">4</span>) <span class="hljs-keyword">continue</span>;
+    System.out.println(i);
+}
+</code></pre>
+<p>Output of the above loop:</p>
+<pre><code class="language-plain">0
+1
+2
+3
+5
+6
+7
+8
+9
+</code></pre>
+<p>Since the <code>continue</code> statement transfers control back to the top of the loop, it is <strong>essential</strong> that the statement responsible for changing the value of the control variable is <strong>executed before calling <code>continue;</code></strong>. This will prevent the loop from never stopping (becoming an infinite loop). That's why <code>continue</code> is usually used in <code>for</code> loops, since the increment statement always runs after every iteration.</p>
+<h2 id="conclusion" tabindex="-1">Conclusion</h2>
+<p>And that's the basics of java covered in just thirty minutes! This is just scratching the surface, since there are many many more things to java. I will release a Java OOP in 30 minutes tutorial covering methods, classes, interfaces and other OOP concepts. Be sure to post any questions in the comments and stay tuned!</p>
+
+<p><strong>Update: Part 2 is out - <a href="https://arnu515.gq/blog/oop-in-java">OOP in java</a></strong></p>
